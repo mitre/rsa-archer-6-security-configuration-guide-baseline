@@ -1,3 +1,3 @@
-# Example InSpec Profile
+# RSA Archer InSpec Profile
 
-This example shows the implementation of an InSpec profile.
+Inspec profile to validate security settings of RSA Archer application.
