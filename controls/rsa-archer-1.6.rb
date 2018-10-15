@@ -1,6 +1,7 @@
 control 'rsa-archer-1.6' do
   title 'Lowercase characters require'
-  desc 'When passwords are changed or new passwords are assigned, the new password must contain at least one lowercase character.'
+  desc 'When passwords are changed or new passwords are assigned, the new
+  password must contain at least one lowercase character.'
   tag 'check': 'In security parameters, check if SpecialCharsRequired = 1'
   tag 'fix': 'In security parameters, set SpecialCharsRequired = 1'
   tag 'nist': ['IA-5(1)', 'Rev_4']

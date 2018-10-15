@@ -1,6 +1,7 @@
 control 'rsa-archer-1.2' do
   title 'Alpha characters required'
-  desc 'When passwords are changed or new passwords are established, the new password must contain at least two alpha characters.'
+  desc 'When passwords are changed or new passwords are established, the new
+  password must contain at least two alpha characters.'
   tag 'check': 'In security parameters, check if AlphaCharsRequired = 2'
   tag 'fix': 'In security parameters, set AlphaCharsRequired = 2'
   tag 'nist': ['IA-5(1)', 'Rev_4']

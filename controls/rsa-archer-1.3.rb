@@ -1,6 +1,7 @@
 control 'rsa-archer-1.3' do
   title 'Numeric characters required'
-  desc 'When passwords are changed or new passwords are established, the new password must contain at least one numeric character.'
+  desc 'When passwords are changed or new passwords are established, the new
+  password must contain at least one numeric character.'
   tag 'check': 'In security parameters, check if NumericCharsRequired = 1'
   tag 'fix': 'In security parameters, set NumericCharsRequired = 1'
   tag 'nist': ['IA-5(1)', 'Rev_4']

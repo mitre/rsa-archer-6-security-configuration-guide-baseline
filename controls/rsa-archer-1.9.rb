@@ -1,6 +1,7 @@
 control 'rsa-archer-1.9' do
   title 'Grace logons'
-  desc 'After password expiration, zero grace logons are permitted using the expired password.'
+  desc 'After password expiration, zero grace logons are permitted using the
+  expired password.'
   tag 'check': 'In security parameters, check if GraceLogins = 0'
   tag 'fix': 'In security parameters, set GraceLogins = 0'
   tag 'nist': ['IA-5(1)', 'Rev_4']

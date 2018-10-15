@@ -10,11 +10,13 @@ version: 0.1.0
 attributes:
   - name: url
     type: string
-    default: 'https://archersandbox.mitre.org/'
+    required: true
+    default: 'https://urltoarcherapp.org/'
 
   - name: instancename
     type: string
-    default: 'sandy'
+    required: true
+    default: 'archerapp'
 
   - name: user_domain
     type: string
@@ -22,12 +24,14 @@ attributes:
 
   - name: username
     type: string
-    default: 'inspecAPIAdmin'
+    required: true
+    default: 'restapiuser'
 
   - name: password
     type: string
-    default: ENV['ARCHER_API_PASSWORD']
+    required: true
+    default: <%=ENV['ARCHER_API_PASSWORD']%>
   
   - name: ssl_verify
     type: boolean
-    default: false
+    default: true

@@ -1,6 +1,7 @@
 control 'rsa-archer-1.5' do
   title 'Uppercase characters required'
-  desc 'When passwords are changed or new passwords are established, the new password must contain at least one uppercase character.'
+  desc 'When passwords are changed or new passwords are established, the new
+  password must contain at least one uppercase character.'
   tag 'check': 'In security parameters, check if LowercaseCharsRequired = 1'
   tag 'fix': 'In security parameters, set LowercaseCharsRequired = 1'
   tag 'nist': ['IA-5(1)', 'Rev_4']

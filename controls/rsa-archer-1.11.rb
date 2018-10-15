@@ -1,6 +1,7 @@
 control 'rsa-archer-1.11' do
   title 'Session time-out'
-  desc 'The operating system must initiate a session time-out after a 10 minute period of inactivity '
+  desc 'The operating system must initiate a session time-out after a 10 minute
+  period of inactivity '
   tag 'check': 'In security parameters, check if SessionTimeout = 10'
   tag 'fix': 'In security parameters, set SessionTimeout = 10'
   tag 'nist': ['AC-11', 'Rev_4']
