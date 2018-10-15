@@ -134,7 +134,7 @@ $ inspec exec /path/to/profile --controls rsa-archer-1.1
 
 ### Authors
 
-- Author: Rony Xaiver [rx294](https://github.com/rx294)
+- Author: Rony Xavier [rx294](https://github.com/rx294)
 
 ### License 
 

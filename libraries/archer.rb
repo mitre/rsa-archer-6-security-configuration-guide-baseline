@@ -4,6 +4,27 @@ require 'utils/filter'
 require 'hashie/mash'
 require 'resources/package'
 
+# needed to skip cert verification when ssl_verify false
+# this can be replaced with -SkipCertificateCheck in Powershell 6.x
+SKIP_CERT_CHECK = %(
+
+add-type @"
+    using System.Net;
+    using System.Security.Cryptography.X509Certificates;
+    public class TrustAllCertsPolicy : ICertificatePolicy {
+        public bool CheckValidationResult(
+            ServicePoint srvPoint, X509Certificate certificate,
+            WebRequest request, int certificateProblem) {
+            return true;
+        }
+    }
+"@
+[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Ssl3, [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12
+
+)
+
 LOGIN_PATH = '/api/core/security/login'.freeze
 SECURITY_PARAMETERS_PATH = '/api/core/system/securityparameter'.freeze
 
@@ -24,12 +45,11 @@ class Archer < Inspec.resource(1)
     end
   "
 
-  attr_reader :creds, :default_administrative_user, :general_user_parameter, :archer_services_parameter, :url
+  attr_reader
 
   def initialize(opts = {})
-    # return skip_resource 'Package `curl` not avaiable on the host' unless inspec.command('curl').exist?
 
-    unless inspec.command('curl').exist? || inspec.command('pwsh').exist?
+    unless inspec.command('curl').exist?
       raise Inspec::Exceptions::ResourceSkipped, "Package `curl` and `powershell` not avaiable on the host"
     end
 
@@ -42,10 +62,7 @@ class Archer < Inspec.resource(1)
     @creds['Password']   = opts.fetch(:password, nil)
 
     @ssl_verify = opts.fetch(:ssl_verify, true)
-    
-    if session_token.nil?
-      login
-    end
+    login if session_token.nil?
   end
 
   def to_s
@@ -83,13 +100,14 @@ class Archer < Inspec.resource(1)
 
   def invoke_restmethod_command(request: nil, headers: nil, body: nil, path: nil)
     cmd_string = ['Invoke-RestMethod']
-    cmd_string << '-SkipCertificateCheck' unless @ssl_verify
     cmd_string << "-Method #{request}" unless request.nil?
     cmd_string << "-Headers @{#{headers.map { |x, y| " '#{x}' = '#{y}'" }.join(';')} }" unless headers.nil?
     cmd_string << "-ContentType 'application/json'"
     cmd_string << "-Body '#{body.to_json}'" unless body.nil?
     cmd_string << URI.join(@url, path)
     cmd_string << '| ConvertTo-Json'
+    return "#{SKIP_CERT_CHECK} \n #{cmd_string.join(' ')}" unless @ssl_verify
+
     cmd_string.join(' ')
   end
 
@@ -108,20 +126,20 @@ class Archer < Inspec.resource(1)
   end
 
   def login
-    if inspec.command('curl').exist?
-      cmd = curl_command(request: 'POST',
-                         headers: nil,
-                         body: @creds,
-                         path: LOGIN_PATH)
-      response = inspec.command(cmd)
-      verify_curl_success!(response)
-    elsif inspec.command('pwsh').exist?
+    if inspec.os.windows?
       cmd = invoke_restmethod_command(request: 'POST',
                                       headers: nil,
                                       body: @creds,
                                       path: LOGIN_PATH)
       response = inspec.powershell(cmd)
       verify_pwsh_success!(response)
+    else
+      cmd = curl_command(request: 'POST',
+                         headers: nil,
+                         body: @creds,
+                         path: LOGIN_PATH)
+      response = inspec.command(cmd)
+      verify_curl_success!(response)
     end
     content = parse_response(response.stdout)
     verify_json_payload!(content)
@@ -129,25 +147,24 @@ class Archer < Inspec.resource(1)
   end
 
   def securityparameter
-    headers = {
-                'Authorization' => "Archer session-id=#{session_token}",
-              }
-    if inspec.command('curl').exist?
-      cmd = curl_command(request: 'GET',
-                         headers: headers,
-                         body: nil,
-                         path: SECURITY_PARAMETERS_PATH)
-      response = inspec.command(cmd)
-      verify_curl_success!(response)
-    elsif inspec.command('pwsh').exist?
+    headers = { 'Authorization' => "Archer session-id=#{session_token}" }
+    if inspec.os.windows?
       cmd = invoke_restmethod_command(request: 'GET',
                                       headers: headers,
                                       body: nil,
                                       path: SECURITY_PARAMETERS_PATH)
       response = inspec.powershell(cmd)
       verify_pwsh_success!(response)
+      parse_response(response.stdout)['value']
+    else
+      cmd = curl_command(request: 'GET',
+                         headers: headers,
+                         body: nil,
+                         path: SECURITY_PARAMETERS_PATH)
+      response = inspec.command(cmd)
+      verify_curl_success!(response)
+      parse_response(response.stdout)
     end
-    parse_response(response.stdout)
   end
 
   def verify_curl_success!(cmd)
@@ -159,7 +176,7 @@ class Archer < Inspec.resource(1)
       raise Inspec::Exceptions::ResourceSkipped, "Connection refused - please check the URL #{url} for accuracy"
     end
 
-    if cmd.stderr =~ /The remote certificate is invalid according to the validation procedure./
+    if cmd.stderr =~ /Could not establish trust relationship for the SSL\/TLS secure channel/
       raise Inspec::Exceptions::ResourceSkipped, 'Connection refused - peer certificate issuer is not recognized; try setting ssl_verify to false'
     end
 
