@@ -1,7 +1,7 @@
 | Check          | Sub-check                                                                         | Who | Completion Date | Issue #'s |
 |----------------|-----------------------------------------------------------------------------------|-----|-----------------|-----------|
 |Logical checks| Proper profile directory structure							|*|*|*|
-||>JSON output review (e.g., pass/fail on ,<br>hardened, not hardened, edge cases, etc.)|*|*|*|
+||JSON output review (e.g., pass/fail on ,<br>hardened, not hardened, edge cases, etc.)|*|*|*|
 ||InSpec syntax checker|*|*|*|
 |Quality checks|Alignment (including tagging) to original<br> standard (i.e. STIG, CIS Benchmark, NIST Tags)|*|*|*|
 ||Descriptive output for findings details|*|*|*|
