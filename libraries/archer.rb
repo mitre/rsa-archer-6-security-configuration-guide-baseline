@@ -30,8 +30,7 @@ SECURITY_PARAMETERS_PATH = '/api/core/system/securityparameter'.freeze
 
 class Archer < Inspec.resource(1)
   name 'archer'
-  desc "Use the Elasticsearch InSpec audit resource to test the status of nodes in
-    an Elasticsearch cluster."
+  desc "Use the RSA Archer InSpec audit resource to test the status your RSA Archer system."
 
   example "
     describe es_helper('http://eshost.mycompany.biz:9200/', username: 'elastic', password: 'changeme', ssl_verify: false) do
