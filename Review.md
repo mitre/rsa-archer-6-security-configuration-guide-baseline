@@ -1,6 +1,6 @@
 | Check          | Sub-check                                                                         | Who | Completion Date | Issue #'s |
 |----------------|-----------------------------------------------------------------------------------|-----|-----------------|-----------|
-|Logical checks| Proper profile directory structure							|*|*|*|
+|Logical checks| Proper profile directory structure							|Eugene Aronne|11/19/2018|*|
 ||JSON output review (e.g., pass/fail on ,<br>hardened, not hardened, edge cases, etc.)|*|*|*|
 ||InSpec syntax checker|*|*|*|
 ||Local commands focused on target not the runner|*|*|*|
