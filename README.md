@@ -88,7 +88,7 @@ The profile uses RSA Archer REST API connection parameters as `attributes` speci
 - user_domain: RSA Archer User Domain (OPTIONAL)<br>
 `user_domain: ''`
 
-- username: REST API User with atleast `Read-Only` access to `Access Control` attributes on archer (REQUIRED)<br>
+- username: REST API User with at least `Read-Only` access to `Access Control` attributes on archer (REQUIRED)<br>
 `username: restapiuser`
 
 - password: Password of the users is pulled from the ENV <br> Export the password to `ARCHER_API_PASSWORD` (REQUIRED)<br>
