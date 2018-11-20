@@ -7,7 +7,7 @@
 |Quality checks|Alignment (including tagging) to original<br> standard (i.e. STIG, CIS Benchmark, NIST Tags)|*|*|*|
 ||Descriptive output for findings details|*|*|*|
 ||Documentation quality (i.e. README)<br> novice level instructions including prerequisites|*|*|*|
-||Consistency across other profile conventions |*|*|*|
+||Consistency across other profile conventions |Eugene Aronne|*|3,4,5|
 ||Spelling grammar|*|*|*|
 ||Removing debugging documentation and code|*|*|*|
 | Error handling |“Profile Error” containment: “null” responses <br>should only happen if InSpec is run with incorrect privileges|*|*|*|
