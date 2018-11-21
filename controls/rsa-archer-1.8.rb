@@ -1,6 +1,7 @@
 control 'rsa-archer-1.8' do
   title 'Previous passwords disallowed'
   desc 'Passwords must be prohibited from reuse for a minimum of 20 generations.'
+  impact 0.5
   tag 'check': 'In security parameters, check if PreviousPasswordsDisallowed = 20'
   tag 'fix': 'In security parameters, set PreviousPasswordsDisallowed = 20'
   tag 'nist': ['IA-5(1)', 'Rev_4']

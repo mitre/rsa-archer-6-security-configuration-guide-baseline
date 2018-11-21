@@ -2,6 +2,7 @@ control 'rsa-archer-1.12' do
   title 'Account lockout period'
   desc 'Accounts locked due to unsuccessful logon attempts will stay locked
   until unlocked by an administrator.'
+  impact 0.5
   tag 'check': 'In security parameters, check if LockoutPeriod = 999'
   tag 'fix': 'In security parameters, set LockoutPeriod = 999'
   tag 'nist': ['AC-7', 'Rev_4']

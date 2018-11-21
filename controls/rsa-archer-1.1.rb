@@ -1,6 +1,7 @@
 control 'rsa-archer-1.1' do
   title 'Minimum Password Length'
   desc 'Passwords must be a minimum of 9 characters in length.'
+  impact 0.5
   tag 'check': 'In security parameters, check if MinPasswordLength = 9'
   tag 'fix': 'In security parameters, set MinPasswordLength = 9'
   tag 'nist': ['IA-5(1)', 'Rev_4']

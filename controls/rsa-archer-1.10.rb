@@ -1,6 +1,7 @@
 control 'rsa-archer-1.10' do
   title 'Maximum failed logon attempts'
   desc 'Accounts subject to 3 unsuccessful logon attempts must be locked.'
+  impact 0.5
   tag 'check': 'In security parameters, check if MaximumFailedLoginAttempts = 3'
   tag 'fix': 'In security parameters, set MaximumFailedLoginAttempts = 3'
   tag 'nist': ['AC-7', 'Rev_4']

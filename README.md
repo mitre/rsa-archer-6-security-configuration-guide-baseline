@@ -63,7 +63,7 @@ Once InSpec is installed, run `inspec version` to verify that the installation w
 
 You will need to download the InSpec Profile to your `runner` system. You can do this via `git` or the GitHub Web interface, etc.
 
-  a. `git clone https://github.com/rx294/rsa-archer-security-configuration-guide-baseline`, or 
+  a. `git clone https://github.com/mitre/rsa-archer-security-configuration-guide-baseline`, or 
   
   b. Save a Zip or tar.gz copy of the master branch from the `Clone or Download` button of this project
 
@@ -104,7 +104,7 @@ InSpec makes it easy to run your tests wherever you need. More options listed he
 
 ```
 # Clone Inspec Profile
-$ git clone https://github.com/rx294/rsa-archer-security-configuration-guide-baseline
+$ git clone https://github.com/mitre/rsa-archer-security-configuration-guide-baseline
 
 # Install Gems
 $ bundle install

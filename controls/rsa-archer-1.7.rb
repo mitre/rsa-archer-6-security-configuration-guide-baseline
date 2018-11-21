@@ -1,6 +1,7 @@
 control 'rsa-archer-1.7' do
   title 'Password change interval'
   desc 'Existing passwords must be restricted to a 90-day maximum lifetime.'
+  impact 0.5
   tag 'check': 'In security parameters, check if PasswordChangeInterval = 90'
   tag 'fix': 'In security parameters, set PasswordChangeInterval = 90'
   tag 'nist': ['IA-5(1)', 'Rev_4']
