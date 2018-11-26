@@ -10,7 +10,7 @@ This [InSpec](https://github.com/chef/inspec) compliance profile validates the s
 InSpec is an open-source run-time framework and rule language used to specify compliance, security, and policy requirements for testing any node in your infrastructure.# RSA-Archer-Security-Configuration-Guide-Baseline
 RSA Archer Security Configuration Guide InSpec Profile
 
-Based on the RSA Archer 6.4 Platform Security Configuration Guide
+Based on the [RSA Archer 6.4 Platform Security Configuration Guide](https://github.com/mitre/rsa-archer-security-configuration-guide-baseline/blob/master/RSA%20Archer%206.4%20Platform%20Security%20Configuration%20Guide.pdf)
 
 ## Description
 
