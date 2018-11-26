@@ -1,5 +1,3 @@
-# NOTE: This is still alpha and will change without warning
-
 # RSA-Archer-Security-Configuration-Guide-Baseline
 RSA Archer Security Configuration Guide InSpec Profile
 
