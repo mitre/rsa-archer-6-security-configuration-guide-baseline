@@ -1,5 +1,3 @@
-SESSION_TIMEOUT = attribute('session_timeout')
-
 control 'rsa-archer-1.11' do
   title 'Session time-out'
   desc 'The operating system must initiate a session time-out after a 10 minute
@@ -17,8 +15,8 @@ control 'rsa-archer-1.11' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.SessionTimeout') { should cmp <= SESSION_TIMEOUT }
-    its('general_user_parameter.SessionTimeout') { should cmp <= SESSION_TIMEOUT }
-    its('archer_services_parameter.SessionTimeout') { should cmp <= SESSION_TIMEOUT }
+    its('default_administrative_user.SessionTimeout') { should cmp <= attribute('session_timeout') }
+    its('general_user_parameter.SessionTimeout') { should cmp <= attribute('session_timeout') }
+    its('archer_services_parameter.SessionTimeout') { should cmp <= attribute('session_timeout') }
   end
 end
