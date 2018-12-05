@@ -1,5 +1,3 @@
-LOCKOUT_PERIOD = attribute('lockout_period')
-
 control 'rsa-archer-1.12' do
   title 'Account lockout period'
   desc 'Accounts locked due to unsuccessful logon attempts will stay locked
@@ -17,8 +15,8 @@ control 'rsa-archer-1.12' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.LockoutPeriod') { should cmp >= LOCKOUT_PERIOD }
-    its('general_user_parameter.LockoutPeriod') { should cmp >= LOCKOUT_PERIOD }
-    its('archer_services_parameter.LockoutPeriod') { should cmp >= LOCKOUT_PERIOD }
+    its('default_administrative_user.LockoutPeriod') { should cmp >= attribute('lockout_period') }
+    its('general_user_parameter.LockoutPeriod') { should cmp >= attribute('lockout_period') }
+    its('archer_services_parameter.LockoutPeriod') { should cmp >= attribute('lockout_period') }
   end
 end
