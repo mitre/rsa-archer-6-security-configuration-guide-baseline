@@ -1,5 +1,3 @@
-MINIMUM_UPPERCASE_CHARACTERS = attribute('minimum_uppercase_characters')
-
 control 'rsa-archer-1.5' do
   title 'Uppercase characters required'
   desc 'When passwords are changed or new passwords are established, the new
@@ -17,8 +15,8 @@ control 'rsa-archer-1.5' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.UppercaseCharsRequired') { should cmp >= MINIMUM_UPPERCASE_CHARACTERS }
-    its('general_user_parameter.UppercaseCharsRequired') { should cmp >= MINIMUM_UPPERCASE_CHARACTERS }
-    its('archer_services_parameter.UppercaseCharsRequired') { should cmp >= MINIMUM_UPPERCASE_CHARACTERS }
+    its('default_administrative_user.UppercaseCharsRequired') { should cmp >= attribute('minimum_uppercase_characters') }
+    its('general_user_parameter.UppercaseCharsRequired') { should cmp >= attribute('minimum_uppercase_characters') }
+    its('archer_services_parameter.UppercaseCharsRequired') { should cmp >= attribute('minimum_uppercase_characters') }
   end
 end
