@@ -1,5 +1,3 @@
-MINIMUM_NUMERIC_CHARACTERS = attribute('minimum_numeric_characters')
-
 control 'rsa-archer-1.3' do
   title 'Numeric characters required'
   desc 'When passwords are changed or new passwords are established, the new
@@ -17,8 +15,8 @@ control 'rsa-archer-1.3' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.NumericCharsRequired') { should cmp >= MINIMUM_NUMERIC_CHARACTERS }
-    its('general_user_parameter.NumericCharsRequired') { should cmp >= MINIMUM_NUMERIC_CHARACTERS }
-    its('archer_services_parameter.NumericCharsRequired') { should cmp >= MINIMUM_NUMERIC_CHARACTERS }
+    its('default_administrative_user.NumericCharsRequired') { should cmp >= attribute('minimum_numeric_characters') }
+    its('general_user_parameter.NumericCharsRequired') { should cmp >= attribute('minimum_numeric_characters') }
+    its('archer_services_parameter.NumericCharsRequired') { should cmp >= attribute('minimum_numeric_characters') }
   end
 end
