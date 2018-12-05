@@ -1,5 +1,3 @@
-UNSUCCESSFUL_LOGIN_ATTEMPTS = attribute('unsuccessful_login_attempts')
-
 control 'rsa-archer-1.10' do
   title 'Maximum failed logon attempts'
   desc 'Accounts subject to 3 unsuccessful logon attempts must be locked.'
@@ -16,8 +14,8 @@ control 'rsa-archer-1.10' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.MaximumFailedLoginAttempts') { should cmp UNSUCCESSFUL_LOGIN_ATTEMPTS }
-    its('general_user_parameter.MaximumFailedLoginAttempts') { should cmp UNSUCCESSFUL_LOGIN_ATTEMPTS }
-    its('archer_services_parameter.MaximumFailedLoginAttempts') { should cmp UNSUCCESSFUL_LOGIN_ATTEMPTS }
+    its('default_administrative_user.MaximumFailedLoginAttempts') { should cmp attribute('unsuccessful_login_attempts') }
+    its('general_user_parameter.MaximumFailedLoginAttempts') { should cmp attribute('unsuccessful_login_attempts') }
+    its('archer_services_parameter.MaximumFailedLoginAttempts') { should cmp attribute('unsuccessful_login_attempts') }
   end
 end
