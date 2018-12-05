@@ -1,5 +1,3 @@
-MINIMUM_LOWERCASE_CHARACTERS = attribute('minimum_lowercase_characters')
-
 control 'rsa-archer-1.6' do
   title 'Lowercase characters require'
   desc 'When passwords are changed or new passwords are assigned, the new
@@ -17,8 +15,8 @@ control 'rsa-archer-1.6' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.LowercaseCharsRequired') { should cmp >= MINIMUM_LOWERCASE_CHARACTERS }
-    its('general_user_parameter.LowercaseCharsRequired') { should cmp >= MINIMUM_LOWERCASE_CHARACTERS }
-    its('archer_services_parameter.LowercaseCharsRequired') { should cmp >= MINIMUM_LOWERCASE_CHARACTERS }
+    its('default_administrative_user.LowercaseCharsRequired') { should cmp >= attribute('minimum_lowercase_characters') }
+    its('general_user_parameter.LowercaseCharsRequired') { should cmp >= attribute('minimum_lowercase_characters') }
+    its('archer_services_parameter.LowercaseCharsRequired') { should cmp >= attribute('minimum_lowercase_characters') }
   end
 end
