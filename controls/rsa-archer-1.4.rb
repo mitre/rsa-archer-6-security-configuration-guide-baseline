@@ -1,5 +1,3 @@
-MINIMUM_SPECIAL_CHARACTERS = attribute('minimum_special_characters')
-
 control 'rsa-archer-1.4' do
   title 'Special characters required'
   desc 'When passwords are changed or new passwords are established, the new
@@ -17,8 +15,8 @@ control 'rsa-archer-1.4' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.SpecialCharsRequired') { should cmp >= MINIMUM_SPECIAL_CHARACTERS }
-    its('general_user_parameter.SpecialCharsRequired') { should cmp >= MINIMUM_SPECIAL_CHARACTERS }
-    its('archer_services_parameter.SpecialCharsRequired') { should cmp >= MINIMUM_SPECIAL_CHARACTERS }
+    its('default_administrative_user.SpecialCharsRequired') { should cmp >= attribute('minimum_special_characters') }
+    its('general_user_parameter.SpecialCharsRequired') { should cmp >= attribute('minimum_special_characters') }
+    its('archer_services_parameter.SpecialCharsRequired') { should cmp >= attribute('minimum_special_characters') }
   end
 end
