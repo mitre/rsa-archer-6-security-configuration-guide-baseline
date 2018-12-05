@@ -1,5 +1,3 @@
-MINIMUM_ALPHA_CHARACTERS = attribute('minimum_alpha_characters')
-
 control 'rsa-archer-1.2' do
   title 'Alpha characters required'
   desc 'When passwords are changed or new passwords are established, the new
@@ -17,8 +15,8 @@ control 'rsa-archer-1.2' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.AlphaCharsRequired') { should cmp >= MINIMUM_ALPHA_CHARACTERS }
-    its('general_user_parameter.AlphaCharsRequired') { should cmp >= MINIMUM_ALPHA_CHARACTERS }
-    its('archer_services_parameter.AlphaCharsRequired') { should cmp >= MINIMUM_ALPHA_CHARACTERS }
+    its('default_administrative_user.AlphaCharsRequired') { should cmp >= attribute('minimum_alpha_characters') }
+    its('general_user_parameter.AlphaCharsRequired') { should cmp >= attribute('minimum_alpha_characters') }
+    its('archer_services_parameter.AlphaCharsRequired') { should cmp >= attribute('minimum_alpha_characters') }
   end
 end
