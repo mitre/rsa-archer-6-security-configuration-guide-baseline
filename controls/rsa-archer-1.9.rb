@@ -1,5 +1,3 @@
-GRACE_LOGINS = attribute('grace_logins')
-
 control 'rsa-archer-1.9' do
   title 'Grace logons'
   desc 'After password expiration, zero grace logons are permitted using the
@@ -17,8 +15,8 @@ control 'rsa-archer-1.9' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.GraceLogins') { should cmp GRACE_LOGINS }
-    its('general_user_parameter.GraceLogins') { should cmp GRACE_LOGINS }
-    its('archer_services_parameter.GraceLogins') { should cmp GRACE_LOGINS }
+    its('default_administrative_user.GraceLogins') { should cmp attribute('grace_logins') }
+    its('general_user_parameter.GraceLogins') { should cmp attribute('grace_logins') }
+    its('archer_services_parameter.GraceLogins') { should cmp attribute('grace_logins') }
   end
 end
