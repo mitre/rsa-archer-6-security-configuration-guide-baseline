@@ -5,8 +5,8 @@ control 'rsa-archer-1.11' do
   desc 'The operating system must initiate a session time-out after a 10 minute
   period of inactivity '
   impact 'medium'
-  desc 'check', 'In security parameters, check if SessionTimeout = 10'
-  desc 'fix', 'In security parameters, set SessionTimeout = 10'
+  desc 'check', 'In security parameters, check if SessionTimeout = 10.'
+  desc 'fix', 'In security parameters, set SessionTimeout = 10.'
   tag 'nist': ['AC-11', 'Rev_4']
 
   archer_api_helper = archer(url: attribute('url'),

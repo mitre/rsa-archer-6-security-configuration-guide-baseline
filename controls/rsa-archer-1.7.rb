@@ -4,8 +4,8 @@ control 'rsa-archer-1.7' do
   title 'Password change interval'
   desc 'Existing passwords must be restricted to a 90-day maximum lifetime.'
   impact 'medium'
-  desc 'check', 'In security parameters, check if PasswordChangeInterval = 90'
-  desc 'fix', 'In security parameters, set PasswordChangeInterval = 90'
+  desc 'check', 'In security parameters, check if PasswordChangeInterval = 90.'
+  desc 'fix', 'In security parameters, set PasswordChangeInterval = 90.'
   tag 'nist': ['IA-5(1)', 'Rev_4']
 
   archer_api_helper = archer(url: attribute('url'),

@@ -5,8 +5,8 @@ control 'rsa-archer-1.5' do
   desc 'When passwords are changed or new passwords are established, the new
   password must contain at least one uppercase character.'
   impact 'medium'
-  desc 'check', 'In security parameters, check if UppercaseCharsRequired = 1'
-  desc 'fix', 'In security parameters, set UppercaseCharsRequired = 1'
+  desc 'check', 'In security parameters, check if UppercaseCharsRequired = 1.'
+  desc 'fix', 'In security parameters, set UppercaseCharsRequired = 1.'
   tag 'nist': ['IA-5(1)', 'Rev_4']
 
   archer_api_helper = archer(url: attribute('url'),

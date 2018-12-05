@@ -5,8 +5,8 @@ control 'rsa-archer-1.9' do
   desc 'After password expiration, zero grace logons are permitted using the
   expired password.'
   impact 'medium'
-  desc 'check', 'In security parameters, check if GraceLogins = 0'
-  desc 'fix', 'In security parameters, set GraceLogins = 0'
+  desc 'check', 'In security parameters, check if GraceLogins = 0.'
+  desc 'fix', 'In security parameters, set GraceLogins = 0.'
   tag 'nist': ['IA-5(1)', 'Rev_4']
 
   archer_api_helper = archer(url: attribute('url'),

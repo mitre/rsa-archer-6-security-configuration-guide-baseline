@@ -5,8 +5,8 @@ control 'rsa-archer-1.12' do
   desc 'Accounts locked due to unsuccessful logon attempts will stay locked
   until unlocked by an administrator.'
   impact 'medium'
-  desc 'check', 'In security parameters, check if LockoutPeriod = 999'
-  desc 'fix', 'In security parameters, set LockoutPeriod = 999'
+  desc 'check', 'In security parameters, check if LockoutPeriod = 999.'
+  desc 'fix', 'In security parameters, set LockoutPeriod = 999.'
   tag 'nist': ['AC-7', 'Rev_4']
 
   archer_api_helper = archer(url: attribute('url'),

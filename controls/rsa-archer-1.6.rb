@@ -5,8 +5,8 @@ control 'rsa-archer-1.6' do
   desc 'When passwords are changed or new passwords are assigned, the new
   password must contain at least one lowercase character.'
   impact 'medium'
-  desc 'check', 'In security parameters, check if LowercaseCharsRequired = 1'
-  desc 'fix', 'In security parameters, set LowercaseCharsRequired = 1'
+  desc 'check', 'In security parameters, check if LowercaseCharsRequired = 1.'
+  desc 'fix', 'In security parameters, set LowercaseCharsRequired = 1.'
   tag 'nist': ['IA-5(1)', 'Rev_4']
 
   archer_api_helper = archer(url: attribute('url'),
