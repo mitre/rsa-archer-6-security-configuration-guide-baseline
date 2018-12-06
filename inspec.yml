@@ -30,8 +30,80 @@ attributes:
   - name: password
     type: string
     required: true
-    default: <%=ENV['ARCHER_API_PASSWORD']%>
+    default: '<%=ENV['ARCHER_API_PASSWORD']%>'
   
   - name: ssl_verify
     type: boolean
     default: true
+
+  - name: minimum_password_length
+    type: numeric
+    required: false
+    default: 9
+    description: 'The minimum number of characters for passwords.' 
+
+  - name: minimum_alpha_characters
+    type: numeric
+    required: false
+    default: 2
+    description: 'The minimum number of alpha characters that must be present in passwords.'
+
+  - name: minimum_numeric_characters
+    type: numeric
+    required: false
+    default: 1
+    description: 'The minimum number of numeric characters that must be present in passwords.'
+
+  - name: minimum_special_characters
+    type: numeric 
+    required: false
+    default: 1
+    description: 'The minimum number of special characters that must be present in passwords.'
+
+  - name: minimum_uppercase_characters
+    type: numeric
+    required: false
+    default: 1
+    description: 'The minimum number of uppercase characters that must be present in passwords.'
+
+  - name: minimum_lowercase_characters
+    type: numeric
+    required: false
+    default: 1
+    description: 'The minimum number of lowercase characters that must be present in passwords.'
+
+  - name: password_change_interval
+    type: numeric
+    required: false
+    default: 90
+    description: 'The maximum lifetime for passwords in days.'
+
+  - name: previous_passwords_disallowed
+    type: numeric
+    required: false 
+    default: 20
+    description: 'The minimum number of password generations that are prohibited from reuse.'
+
+  - name: grace_logins
+    type: numeric
+    required: false
+    default: 0
+    description: 'The number of grace logins permitted after password expiration.'
+
+  - name: unsuccessful_login_attempts
+    type: numeric
+    required: false
+    default: 3
+    description: 'The maximum number of of failed login attempts.'
+
+  - name: session_timeout
+    type: numeric
+    required: false
+    default: 10
+    description: 'The number of minutes at which point the operating system must initiate a session timeout.'
+
+  - name: lockout_period
+    type: numeric
+    required: false
+    default: 999
+    description: 'The period of time that accounts are locked due to unsuccessful login attempts.'

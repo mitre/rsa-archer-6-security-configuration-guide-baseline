@@ -1,9 +1,9 @@
 control 'rsa-archer-1.1' do
   title 'Minimum Password Length'
   desc 'Passwords must be a minimum of 9 characters in length.'
-  impact 0.5
-  tag 'check': 'In security parameters, check if MinPasswordLength = 9'
-  tag 'fix': 'In security parameters, set MinPasswordLength = 9'
+  impact 'medium'
+  desc 'check', 'In security parameters, check if MinPasswordLength = 9.'
+  desc 'fix', 'In security parameters, set MinPasswordLength = 9.'
   tag 'nist': ['IA-5(1)', 'Rev_4']
 
   archer_api_helper = archer(url: attribute('url'),
@@ -14,8 +14,8 @@ control 'rsa-archer-1.1' do
                              ssl_verify: attribute('ssl_verify'))
 
   describe archer_api_helper do
-    its('default_administrative_user.MinPasswordLength') { should cmp >= 9 }
-    its('general_user_parameter.MinPasswordLength') { should cmp >= 9 }
-    its('archer_services_parameter.MinPasswordLength') { should cmp >= 9 }
+    its('default_administrative_user.MinPasswordLength') { should cmp >= attribute('minimum_password_length') }
+    its('general_user_parameter.MinPasswordLength') { should cmp >= attribute('minimum_password_length') }
+    its('archer_services_parameter.MinPasswordLength') { should cmp >= attribute('minimum_password_length') }
   end
 end
