@@ -25,6 +25,15 @@ The following attributes must be configured in order for the profile to run corr
 
 ## Running This Profile
 
+# Update the attributes specified in `inspec.yml` as required
+
+# Set required ENV variables
+$ export ARCHER_API_PASSWORD=s3cr3tpassw0rd
+
+# To run profile locally and directly from Github with cli & json output 
+$ inspec exec /path/to/profile --reporter cli json:archer-results.json
+```
+
     inspec exec https://github.com/mitre/rsa-archer-security-configuration-guide-baseline/archive/master.tar.gz -t winrm://<hostip> --user '<admin-account>' --password=<password> --reporter cli json:<filename>.json
 
 Runs this profile over winrm to the host at IP address <hostip> as a privileged user account (i.e., an account with administrative privileges), reporting results to both the command line interface (cli) and to a machine-readable JSON file. 
@@ -38,26 +47,6 @@ The following is an example of using this command.
 The JSON results output file can be loaded into __[heimdall-lite](https://mitre.github.io/heimdall-lite/)__ for a user-interactive, graphical view of the InSpec results. 
 
 The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.  
-
-## Usage
-
-InSpec makes it easy to run your tests wherever you need. More options listed here: [InSpec cli](http://inspec.io/docs/reference/cli/)
-
-```
-# Clone Inspec Profile
-$ git clone https://github.com/mitre/rsa-archer-security-configuration-guide-baseline
-
-# Install Gems
-$ bundle install
-
-# Update the attributes specified in `inspec.yml` as required
-
-# Set required ENV variables
-$ export ARCHER_API_PASSWORD=s3cr3tpassw0rd
-
-# To run profile locally and directly from Github with cli & json output 
-$ inspec exec /path/to/profile --reporter cli json:archer-results.json
-```
 
 ## Authors
 - Rony Xavier [rx294](https://github.com/rx294)
