@@ -1,15 +1,6 @@
 # RSA-Archer-Security-Configuration-Guide-Baseline
-RSA Archer Security Configuration Guide InSpec Profile
 
-Based on the RSA Archer 6.x Platform Security Configuration Guide
-
-## Description
-
-This [InSpec](https://github.com/chef/inspec) compliance profile validates the security settings in the RSA Archer Security Configuration Guide in an automated way.
-
-InSpec is an open-source run-time framework and rule language used to specify compliance, security, and policy requirements for testing any node in your infrastructure.
-
-Based on the [RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567) and [API Guide](https://community.rsa.com/docs/DOC-41939)
+InSpec Profile to validate the secure configuration of RSA Archer 6 against the [RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567) and [RSA Archer 6.x API Guide](https://community.rsa.com/docs/DOC-41939)
 
 ## Requirements
 
