@@ -40,12 +40,12 @@ The following attributes must be configured in order for the profile to run corr
     
 | Attribute                     | Required | Default     | Description                                                           |
 | :---                          | :---     | :---        | :---                                                               |
-| url           | yes | 'url: 'https://urltoarcherapp.org/''.      | Base URL of the RSA Archer application. |
-| instancenamne | yes | 'instancename: archerapp'                  | Name of the RSA Archer instance.        |
-| user_domain   | no  | 'user_domain: '''                          | RSA Archer User Domain.                 |
-| username      | yes | 'username: restapiuser'                    | REST API User with at least "read-only" access to "access control" attributes on Archer.|
-| password      | yes | 'password: <%ENV['ARCHER_API_PASSWORD']%>' | Password of the users is pulled from the ENV. Export the password to "ARCHER_API_PASSWORD". |
-| ssl_verify    | no  | 'ssl_verify: true'                         | Set this to 'false' if the Archer application uses self-signed certificates. |
+| url           | yes | `url: 'https://urltoarcherapp.org/'`        | Base URL of the RSA Archer application. |
+| instancenamne | yes | `instancename: archerapp`                   | Name of the RSA Archer instance.        |
+| user_domain   | no  | `user_domain: ''`                           | RSA Archer User Domain.                 |
+| username      | yes | `username: restapiuser`                     | REST API User with at least `Read-Only` access to `Access Control` attributes on Archer.|
+| password      | yes | `password: <%=ENV['ARCHER_API_PASSWORD']%>` | Password of the users is pulled from the ENV. Export the password to "ARCHER_API_PASSWORD". |
+| ssl_verify    | no  | `ssl_verify: true`                          | Set this to 'false' if the Archer application uses self-signed certificates. |
 
 The profile uses RSA Archer REST API connection parameters as `attributes` specified below
 
