@@ -10,6 +10,19 @@ __For the best security of the runner, always install on the runner the _latest 
 
 Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
 
+## Required Configurations
+
+The following attributes must be configured in order for the profile to run correctly. These attributes can be configured in inspec.yml file or in an attributes file. More information about InSpec attributes can be found [here](https://www.inspec.io/docs/reference/profiles/).
+    
+| Attribute                     | Required | Default     | Description                                                           |
+| :---                          | :---     | :---        | :---                                                               |
+| url           | yes | `url: 'https://urltoarcherapp.org/'`        | Base URL of the RSA Archer application. |
+| instancenamne | yes | `instancename: archerapp`                   | Name of the RSA Archer instance.        |
+| user_domain   | no  | `user_domain: ''`                           | RSA Archer User Domain.                 |
+| username      | yes | `username: restapiuser`                     | REST API User with at least `Read-Only` access to `Access Control` attributes on Archer.|
+| password      | yes | `password: <%=ENV['ARCHER_API_PASSWORD']%>` | Password of the users is pulled from the ENV. Export the password to "ARCHER_API_PASSWORD". |
+| ssl_verify    | no  | `ssl_verify: true`                          | Set this to 'false' if the Archer application uses self-signed certificates. |
+
 ## Running This Profile
 
     inspec exec https://github.com/mitre/rsa-archer-security-configuration-guide-baseline/archive/master.tar.gz -t winrm://<hostip> --user '<admin-account>' --password=<password> --reporter cli json:<filename>.json
@@ -24,49 +37,7 @@ The following is an example of using this command.
 
 The JSON results output file can be loaded into __[heimdall-lite](https://mitre.github.io/heimdall-lite/)__ for a user-interactive, graphical view of the InSpec results. 
 
-The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.
-  
-### Get the RSA Archer Security Configuration Guide Baseline
-
-You will need to download the InSpec Profile to your `runner` system. You can do this via `git` or the GitHub Web interface, etc.
-
-  a. `git clone https://github.com/mitre/rsa-archer-security-configuration-guide-baseline`, or 
-  
-  b. Save a Zip or tar.gz copy of the master branch from the `Clone or Download` button of this project
-
-## Required Configurations
-
-The following attributes must be configured in order for the profile to run correctly. These attributes can be configured in inspec.yml file or in an attributes file. More information about InSpec attributes can be found [here](https://www.inspec.io/docs/reference/profiles/).
-    
-| Attribute                     | Required | Default     | Description                                                           |
-| :---                          | :---     | :---        | :---                                                               |
-| url           | yes | `url: 'https://urltoarcherapp.org/'`        | Base URL of the RSA Archer application. |
-| instancenamne | yes | `instancename: archerapp`                   | Name of the RSA Archer instance.        |
-| user_domain   | no  | `user_domain: ''`                           | RSA Archer User Domain.                 |
-| username      | yes | `username: restapiuser`                     | REST API User with at least `Read-Only` access to `Access Control` attributes on Archer.|
-| password      | yes | `password: <%=ENV['ARCHER_API_PASSWORD']%>` | Password of the users is pulled from the ENV. Export the password to "ARCHER_API_PASSWORD". |
-| ssl_verify    | no  | `ssl_verify: true`                          | Set this to 'false' if the Archer application uses self-signed certificates. |
-
-The profile uses RSA Archer REST API connection parameters as `attributes` specified below
-
-- url: Base url of the RSA Archer application, (REQUIRED) <br>
-`url: 'https://urltoarcherapp.org/'`
-
-- instancename: Name of the RSA Archer instance (REQUIRED)<br>
-`instancename: archerapp`
-
-- user_domain: RSA Archer User Domain (OPTIONAL)<br>
-`user_domain: ''`
-
-- username: REST API User with at least `Read-Only` access to `Access Control` attributes on archer (REQUIRED)<br>
-`username: restapiuser`
-
-- password: Password of the users is pulled from the ENV <br> Export the password to `ARCHER_API_PASSWORD` (REQUIRED)<br>
-`password: <%=ENV['ARCHER_API_PASSWORD']%>`
-
-- ssl_verify: Set this to `false` if Archer App uses self-signed certs<br>
-`ssl_verify: true`
-
+The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.  
 
 ## Usage
 
