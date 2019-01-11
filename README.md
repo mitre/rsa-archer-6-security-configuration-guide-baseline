@@ -1,45 +1,30 @@
 # RSA-Archer-Security-Configuration-Guide-Baseline
 
-InSpec Profile to validate the secure configuration of RSA Archer 6.x, against **[RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567)**. 
+InSpec Profile to validate the secure configuration of RSA Archer 6.x, against the **[RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567)**. 
 
-## Requirements
+## Getting Started
 
-- [InSpec](http://inspec.io/) at least version 2.x
+It is intended and recommended that InSpec run this profile from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __winrm__.
 
-## Get started
+__For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
-### Installing InSpec 
+Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
 
-### Install InSpec on Unix/Linux/Mac
+## Running This Profile
 
-#### Option 1 Install InSpec (Package installer)
-First things first: We need InSpec on our workstation. For production and standalone environments, I recommend the ChefDK package, since it gives you Chef + Test-Kitchen + InSpec. You can download the package from [https://downloads.chef.io/chefdk](https://downloads.chef.io/chefdk).
+    inspec exec https://github.com/mitre/rsa-archer-security-configuration-guide-baseline/archive/master.tar.gz -t winrm://<hostip> --user '<admin-account>' --password=<password> --reporter cli json:<filename>.json
 
-#### Option 2 Install InSpec (Terminal install)
-Another option is to install InSpec via a command line script:
+Runs this profile over winrm to the host at IP address <hostip> as a privileged user account (i.e., an account with administrative privileges), reporting results to both the command line interface (cli) and to a machine-readable JSON file. 
+    
+The following is an example of using this command. 
 
-```
-$ curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -channel stable -P chefdk
-```
+    inspec exec https://github.com/mitre/stig-microsoft-iis-8.5-site-baseline/archive/master.tar.gz -t winrm://$winhostip --user 'Administrator' --password=Pa55w0rd --reporter cli json:my-iis-site.json
 
-#### After Install
-Once InSpec is installed, run `inspec version` to verify that the installation was successful.
+## Viewing the JSON Results
 
+The JSON results output file can be loaded into __[heimdall-lite](https://mitre.github.io/heimdall-lite/)__ for a user-interactive, graphical view of the InSpec results. 
 
-### Install InSpec on Windows
-
-#### Option 1 (package installer)
-First things first: We need InSpec on our workstation. For production and standalone environments, I recommend the ChefDK package, since it gives you Chef + Test-Kitchen + InSpec. You can download the package from [https://downloads.chef.io/chefdk](https://downloads.chef.io/chefdk).
-
-#### Option 2 (command line)
-Another option is to install InSpec via a Powershell script:
-
-```
-$ . { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel stable -project chefdk
-```
-
-#### After Install
-Once InSpec is installed, run `inspec version` to verify that the installation was successful.
+The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.
   
 ### Get the RSA Archer Security Configuration Guide Baseline
 
@@ -49,15 +34,18 @@ You will need to download the InSpec Profile to your `runner` system. You can do
   
   b. Save a Zip or tar.gz copy of the master branch from the `Clone or Download` button of this project
 
-### Setting up dependencies in your Ruby and InSpec Environments
+## Required Configurations
 
-The profile uses Bundler to manage needed dependencies - so you will need to installed the needed gems via bundler before you run the profile. Change directories to your your cloned inspec profile then do a `bundle install`. 
-
-  a. `cd rsa-archer-security-configuration-guide-baseline` 
-  
-  b. `bundle install`
-
-## Credentials
+The following attributes must be configured in order for the profile to run correctly. These attributes can be configured in inspec.yml file or in an attributes file. More information about InSpec attributes can be found [here](https://www.inspec.io/docs/reference/profiles/).
+    
+| Attribute                     | Required | Default     | Description                                                           |
+| :---                          | :---     | :---        | :---                                                               |
+| url           | yes | 'url: 'https://urltoarcherapp.org/''.      | Base URL of the RSA Archer application. |
+| instancenamne | yes | 'instancename: archerapp'                  | Name of the RSA Archer instance.        |
+| user_domain   | no  | 'user_domain: '''                          | RSA Archer User Domain.                 |
+| username      | yes | 'username: restapiuser'                    | REST API User with at least "read-only" access to "access control" attributes on Archer.|
+| password      | yes | 'password: <%ENV['ARCHER_API_PASSWORD']%>' | Password of the users is pulled from the ENV. Export the password to "ARCHER_API_PASSWORD". |
+| ssl_verify    | no  | 'ssl_verify: true'                         | Set this to 'false' if the Archer application uses self-signed certificates. |
 
 The profile uses RSA Archer REST API connection parameters as `attributes` specified below
 
@@ -98,14 +86,6 @@ $ export ARCHER_API_PASSWORD=s3cr3tpassw0rd
 
 # To run profile locally and directly from Github with cli & json output 
 $ inspec exec /path/to/profile --reporter cli json:archer-results.json
-```
-
-### Run individual controls
-
-In order to verify individual controls, just provide the control ids to InSpec:
-
-```
-$ inspec exec /path/to/profile --controls rsa-archer-1.1
 ```
 
 ## Authors
