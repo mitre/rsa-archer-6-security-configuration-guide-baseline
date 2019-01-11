@@ -1,6 +1,6 @@
 # RSA-Archer-Security-Configuration-Guide-Baseline
 
-InSpec Profile to validate the secure configuration of RSA Archer 6.x, against **[RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567)**. Additional information is provided in the [RSA Archer 6.x API Guide](https://community.rsa.com/docs/DOC-41939).
+InSpec Profile to validate the secure configuration of RSA Archer 6.x, against **[RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567)**. 
 
 ## Requirements
 
@@ -108,17 +108,17 @@ In order to verify individual controls, just provide the control ids to InSpec:
 $ inspec exec /path/to/profile --controls rsa-archer-1.1
 ```
 
-## Contributors + Kudos
-
+## Authors
 - Rony Xavier [rx294](https://github.com/rx294)
+
+## Special Thanks
 - Eugene Aronne [ejaronne](https://github.com/ejaronne)
 - Aaron Lippold [aaronlippold](https://github.com/aaronlippold)
 
-## License and Author
+## Additional References
+- [RSA Archer 6.x API Guide](https://community.rsa.com/docs/DOC-41939).
 
-### Authors
-
-- Author: Rony Xavier [rx294](https://github.com/rx294)
+## License
 
 ### NOTICE
 
