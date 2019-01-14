@@ -50,10 +50,11 @@ The JSON InSpec results file may also be loaded into a __full heimdall server__,
 - [RSA Archer 6.x API Guide](https://community.rsa.com/docs/DOC-41939).
 
 ## License
+* This project is licensed under the terms of the [Apache 2.0 license](https://github.com/mitre/rsa-archer-6-security-configuration-guide-baseline/blob/master/LICENSE.md).
 
 ### NOTICE
 
-© 2018 The MITRE Corporation.
+© 2019 The MITRE Corporation.
 
 Approved for Public Release; Distribution Unlimited. Case Number 18-3678.  
 
