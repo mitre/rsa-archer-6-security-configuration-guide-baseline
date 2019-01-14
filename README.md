@@ -25,22 +25,13 @@ The following attributes must be configured in order for the profile to run corr
 
 ## Running This Profile
 
-# Update the attributes specified in `inspec.yml` as required
+Before running this profile, the Archer API password must be set. This can be done by running the following command. 
 
-# Set required ENV variables
-$ export ARCHER_API_PASSWORD=s3cr3tpassw0rd
+    $ export ARCHER_API_PASSWORD=s3cr3tpassw0rd
 
-# To run profile locally and directly from Github with cli & json output 
-$ inspec exec /path/to/profile --reporter cli json:archer-results.json
-```
+To run profile locally and directly from Github with cli & json output, run the following command.
 
-    inspec exec https://github.com/mitre/rsa-archer-security-configuration-guide-baseline/archive/master.tar.gz -t winrm://<hostip> --user '<admin-account>' --password=<password> --reporter cli json:<filename>.json
-
-Runs this profile over winrm to the host at IP address <hostip> as a privileged user account (i.e., an account with administrative privileges), reporting results to both the command line interface (cli) and to a machine-readable JSON file. 
-    
-The following is an example of using this command. 
-
-    inspec exec https://github.com/mitre/stig-microsoft-iis-8.5-site-baseline/archive/master.tar.gz -t winrm://$winhostip --user 'Administrator' --password=Pa55w0rd --reporter cli json:my-iis-site.json
+    $ inspec exec /path/to/profile --reporter cli json:archer-results.json
 
 ## Viewing the JSON Results
 
