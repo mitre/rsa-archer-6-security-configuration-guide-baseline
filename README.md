@@ -39,6 +39,13 @@ The JSON results output file can be loaded into __[heimdall-lite](https://mitre.
 
 The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.  
 
+## Contributing and Getting Help
+To report a bug or feature request, please open an [issue](https://github.com/mitre/microsoft-sql-server-2014-instance-stig-baseline/issues/new).
+
+For other help, please send a message to [inspec@mitre.org](mailto:inspec@mitre.org).
+
+To contribute, please review the [contribution guidelines](https://github.com/mitre/docs-mitre-inspec/blob/master/CONTRIBUTING.md).
+
 ## Authors
 - Rony Xavier [rx294](https://github.com/rx294)
 
