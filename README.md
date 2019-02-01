@@ -1,4 +1,4 @@
-# RSA-Archer-Security-Configuration-Guide-Baseline
+# rsa-archer-6-security-configuration-guide-baseline
 
 InSpec profile to validate the secure configuration of RSA Archer 6.x, against the **[RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567)**. 
 
