@@ -167,12 +167,12 @@ class Archer < Inspec.resource(1)
   end
 
   def verify_curl_success!(cmd)
-    raise Inspec::Exceptions::ResourceSkipped, "Error fetching Archer data from curl #{url}\nError: #{cmd.stderr.match(/curl: \(\d.\).*$/)}" unless cmd.exit_status.zero?
+    raise Inspec::Exceptions::ResourceSkipped, "Error fetching Archer data from curl #{@url}\nError: #{cmd.stderr.match(/curl: \(\d.\).*$/)}" unless cmd.exit_status.zero?
   end
 
   def verify_pwsh_success!(cmd)
     if cmd.stderr =~ /No HTTP resource was found that matches the request URI|DNS_FAIL/
-      raise Inspec::Exceptions::ResourceSkipped, "Connection refused - please check the URL #{url} for accuracy"
+      raise Inspec::Exceptions::ResourceSkipped, "Connection refused - please check the URL #{@url} for accuracy"
     end
 
     if cmd.stderr =~ /Could not establish trust relationship for the SSL\/TLS secure channel/
