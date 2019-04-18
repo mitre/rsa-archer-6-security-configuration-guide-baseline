@@ -33,14 +33,15 @@ class Archer < Inspec.resource(1)
   desc "Use the RSA Archer InSpec audit resource to test the status your RSA Archer system."
 
   example "
-    describe es_helper('http://eshost.mycompany.biz:9200/', username: 'elastic', password: 'changeme', ssl_verify: false) do
-      its('node_count') { should >= 3 }
-    end
-
-    describe es_helper do
-      its('node_name') { should include 'node1' }
-      its('os') { should_not include 'MacOS' }
-      its('version') { should cmp > 1.2.0 }
+    describe archer(url: attribute('url'),
+                               instancename: attribute('instancename'),
+                               user_domain: attribute('user_domain'),
+                               username: attribute('username'),
+                               password: attribute('password'),
+                               ssl_verify: attribute('ssl_verify')) do
+      its('default_administrative_user.MinPasswordLength') { should cmp >= 9 }
+      its('general_user_parameter.MinPasswordLength') { should cmp >= 9 }
+      its('archer_services_parameter.MinPasswordLength') { should cmp >= 9 }
     end
   "
 
