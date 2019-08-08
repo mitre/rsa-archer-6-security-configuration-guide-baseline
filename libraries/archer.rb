@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require 'utils/filter'
+require 'inspec/utils/filter'
 require 'hashie/mash'
-require 'resources/package'
+require 'inspec/resources/package'
 
 # needed to skip cert verification when ssl_verify false
 # this can be replaced with -SkipCertificateCheck in Powershell 6.x
