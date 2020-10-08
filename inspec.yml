@@ -1,11 +1,11 @@
 name: archer-baseline
-title: InSpec Profile
-maintainer: The Authors
-copyright: The Authors
-copyright_email: you@example.com
+title: Example RSA Archer 6 Security Configuration Baseline
+maintainer: The MITRE SAF
+copyright: (c) MITRE Corp, 2020
+copyright_email: saf@groups.mitre.org
 license: Apache-2.0
-summary: An InSpec Compliance Profile
-version: 0.1.0
+summary: This Example Profile was developeed from the RSA Archer Security Configuration Guide as an example of how to take vendor guidance and create an inspec baseline.
+version: 1.0.0
 inspec_version: ">= 4.0"
 
 attributes:
