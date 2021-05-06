@@ -1,109 +1,115 @@
-name: archer-baseline
-title: InSpec Profile
+name: rsa-archer-6-security-configuration-guide-baseline
+title: rsa-archer-6-security-configuration-guide-baseline
 maintainer: The Authors
 copyright: The Authors
 copyright_email: you@example.com
 license: Apache-2.0
-summary: An InSpec Compliance Profile
-version: 0.1.0
+summary: "Inspec Validation Profile for RSA Archer 6"
+version: 0.1.1
+inspec_version: ">= 4.0"
 
-attributes:
+inputs:
   - name: url
     type: string
     required: true
-    default: 'https://urltoarcherapp.org/'
+    sensitive: true
+    value: 'https://urltoarcherapp.org/'
 
   - name: instancename
     type: string
     required: true
-    default: 'archerapp'
+    sensitive: true
+    value: 'archerapp'
 
   - name: user_domain
     type: string
-    default: ''
+    sensitive: true
+    value: ''
 
   - name: username
     type: string
     required: true
-    default: 'restapiuser'
+    sensitive: true
+    value: 'restapiuser'
 
   - name: password
     type: string
     required: true
-    default: '<%=ENV['ARCHER_API_PASSWORD']%>'
+    sensitive: true
+    value: '<%=ENV['ARCHER_API_PASSWORD']%>'
   
   - name: ssl_verify
     type: boolean
-    default: true
+    value: true
 
   - name: minimum_password_length
     type: numeric
     required: false
-    default: 9
+    value: 9
     description: 'The minimum number of characters for passwords.' 
 
   - name: minimum_alpha_characters
     type: numeric
     required: false
-    default: 2
+    value: 2
     description: 'The minimum number of alpha characters that must be present in passwords.'
 
   - name: minimum_numeric_characters
     type: numeric
     required: false
-    default: 1
+    value: 1
     description: 'The minimum number of numeric characters that must be present in passwords.'
 
   - name: minimum_special_characters
     type: numeric 
     required: false
-    default: 1
+    value: 1
     description: 'The minimum number of special characters that must be present in passwords.'
 
   - name: minimum_uppercase_characters
     type: numeric
     required: false
-    default: 1
+    value: 1
     description: 'The minimum number of uppercase characters that must be present in passwords.'
 
   - name: minimum_lowercase_characters
     type: numeric
     required: false
-    default: 1
+    value: 1
     description: 'The minimum number of lowercase characters that must be present in passwords.'
 
   - name: password_change_interval
     type: numeric
     required: false
-    default: 90
+    value: 90
     description: 'The maximum lifetime for passwords in days.'
 
   - name: previous_passwords_disallowed
     type: numeric
     required: false 
-    default: 20
+    value: 20
     description: 'The minimum number of password generations that are prohibited from reuse.'
 
   - name: grace_logins
     type: numeric
     required: false
-    default: 0
+    value: 0
     description: 'The number of grace logins permitted after password expiration.'
 
   - name: unsuccessful_login_attempts
     type: numeric
     required: false
-    default: 3
+    value: 3
     description: 'The maximum number of of failed login attempts.'
 
   - name: session_timeout
     type: numeric
     required: false
-    default: 10
+    value: 10
     description: 'The number of minutes at which point the operating system must initiate a session timeout.'
 
   - name: lockout_period
     type: numeric
     required: false
-    default: 999
+    value: 999
     description: 'The period of time that accounts are locked due to unsuccessful login attempts.'
