@@ -1,6 +1,6 @@
 # rsa-archer-6-security-configuration-guide-baseline
 
-InSpec profile to validate the secure configuration of RSA Archer 6.x, against the **[RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567)**. 
+InSpec profile to validate the secure configuration of RSA Archer 6.x, against the [RSA Archer 6.x Platform Security Configuration Guide](https://community.rsa.com/docs/DOC-32567). 
 
 ## Getting Started
 
@@ -10,62 +10,116 @@ __For the best security of the runner, always install on the runner the _latest 
 
 Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
 
-## Required Configurations
+## Tailoring to Your Environment
+The following inputs must be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
 
-The following attributes must be configured in order for the profile to run correctly. These attributes can be configured in inspec.yml file or in an attributes file. More information about InSpec attributes can be found [here](https://www.inspec.io/docs/reference/profiles/).
-    
-| Attribute                     | Required | Default     | Description                                                           |
-| :---                          | :---     | :---        | :---                                                               |
-| url           | yes | `url: 'https://urltoarcherapp.org/'`        | Base URL of the RSA Archer application. |
-| instancenamne | yes | `instancename: archerapp`                   | Name of the RSA Archer instance.        |
-| user_domain   | no  | `user_domain: ''`                           | RSA Archer User Domain.                 |
-| username      | yes | `username: restapiuser`                     | REST API User with at least `Read-Only` access to `Access Control` attributes on Archer.|
-| password      | yes | `password: <%=ENV['ARCHER_API_PASSWORD']%>` | Password of the users is pulled from the ENV. Export the password to "ARCHER_API_PASSWORD". |
-| ssl_verify    | no  | `ssl_verify: true`                          | Set this to 'false' if the Archer application uses self-signed certificates. |
+```yaml
+url: ''
 
-## Running This Profile
+instancename: ''
+
+user_domain: ''
+
+username: ''
+
+password: ''
+
+ssl_verify: true
+
+minimum_password_length: 9
+
+minimum_alpha_characters: 2
+
+minimum_numeric_characters: 1
+
+minimum_special_characters: 1
+
+minimum_uppercase_characters: 1
+
+minimum_lowercase_characters: 1
+
+password_change_interval: 90
+
+previous_passwords_disallowed: 20
+
+grace_logins: 0
+
+unsuccessful_login_attempts: 3
+
+session_timeout: 10
+
+lockout_period: 999
+```
+
+# Running This Baseline Directly from Github
 
 Before running this profile, the Archer API password must be set. This can be done by running the following command. 
 
-    $ export ARCHER_API_PASSWORD=s3cr3tpassw0rd
+    $ export ARCHER_API_PASSWORD=<password>
 
-To run profile locally and directly from Github with cli & json output, run the following command.
+```
+# How to run
+inspec exec https://github.com/mitre/rsa-archer-6-security-configuration-guide-baseline/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+```
 
-    $ inspec exec /path/to/profile --reporter cli json:archer-results.json
+### Different Run Options
+
+  [Full exec options](https://docs.chef.io/inspec/cli/#options-3)
+
+## Running This Baseline from a local Archive copy 
+
+If your runner is not always expected to have direct access to GitHub, use the following steps to create an archive bundle of this baseline and all of its dependent tests:
+
+(Git is required to clone the InSpec profile using the instructions below. Git can be downloaded from the [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) site.)
+
+When the __"runner"__ host uses this profile baseline for the first time, follow these steps: 
+
+```
+mkdir profiles
+cd profiles
+git clone https://github.com/mitre/rsa-archer-6-security-configuration-guide-baseline
+inspec archive rsa-archer-6-security-configuration-guide-baseline
+inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+```
+For every successive run, follow these steps to always have the latest version of this baseline:
+
+```
+cd rsa-archer-6-security-configuration-guide-baseline
+git pull
+cd ..
+inspec archive rsa-archer-6-security-configuration-guide-baseline --overwrite
+inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+```
 
 ## Viewing the JSON Results
 
-The JSON results output file can be loaded into __[heimdall-lite](https://mitre.github.io/heimdall-lite/)__ for a user-interactive, graphical view of the InSpec results. 
+The JSON results output file can be loaded into __[heimdall-lite](https://heimdall-lite.mitre.org/)__ for a user-interactive, graphical view of the InSpec results. 
 
-The JSON InSpec results file may also be loaded into a __full heimdall server__, allowing for additional functionality such as to store and compare multiple profile runs.  
+The JSON InSpec results file may also be loaded into a __[full heimdall server](https://github.com/mitre/heimdall)__, allowing for additional functionality such as to store and compare multiple profile runs. 
+
+## Authors
+* Rony Xavier - [rx294](https://github.com/rx294)
+
+## Special Thanks
+* Eugene Aronne - [ejaronne](https://github.com/ejaronne)
+* Aaron Lippold - [aaronlippold](https://github.com/aaronlippold)
+* Mohamed El-Sharkawi - [HackerShark](https://github.com/HackerShark)
+* Shivani Karikar - [karikarshivani](https://github.com/karikarshivani)
 
 ## Contributing and Getting Help
 To report a bug or feature request, please open an [issue](https://github.com/mitre/microsoft-sql-server-2014-instance-stig-baseline/issues/new).
 
-For other help, please send a message to [inspec@mitre.org](mailto:inspec@mitre.org).
-
-To contribute, please review the [contribution guidelines](https://github.com/mitre/docs-mitre-inspec/blob/master/CONTRIBUTING.md).
-
-## Authors
-- Rony Xavier [rx294](https://github.com/rx294)
-
-## Special Thanks
-- Eugene Aronne [ejaronne](https://github.com/ejaronne)
-- Aaron Lippold [aaronlippold](https://github.com/aaronlippold)
-
 ## Additional References
 - [RSA Archer 6.x API Guide](https://community.rsa.com/docs/DOC-41939).
 
-## License
-* This project is licensed under the terms of the [Apache 2.0 license](https://github.com/mitre/rsa-archer-6-security-configuration-guide-baseline/blob/master/LICENSE.md).
+### NOTICE
+
+© 2018-2020 The MITRE Corporation.
+
+Approved for Public Release; Distribution Unlimited. Case Number 18-3678.
 
 ### NOTICE
 
-© 2019 The MITRE Corporation.
-
-Approved for Public Release; Distribution Unlimited. Case Number 18-3678.  
-
-### NOTICE
 MITRE hereby grants express written permission to use, reproduce, distribute, modify, and otherwise leverage this software to the extent permitted by the licensed terms provided in the LICENSE.md file included with this project.
 
 ### NOTICE  
